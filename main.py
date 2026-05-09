@@ -121,10 +121,8 @@ def generate_m3u(results, filename="cctv_live.m3u"):
             if urls:
                 success_count += 1
                 for idx, url in enumerate(urls):
-                    if idx == 0:
-                        f.write(f'#EXTINF:-1 tvg-id="{name}" tvg-name="{display_name}" group-title="CCTV",{display_name}\n')
-                    else:
-                        f.write(f'#EXTINF:-1 tvg-id="{name}_alt{idx}" tvg-name="{display_name} (alt{idx})" group-title="CCTV",{display_name} (alt{idx})\n')
+                    # tvg-id 和 tvg-name 保持一致，都用 display_name
+                    f.write(f'#EXTINF:-1 tvg-id="{display_name}" tvg-name="{display_name}" group-title="CCTV",{display_name}\n')
                     f.write(f"{url}\n\n")
 
     print(f"\nM3U file generated! {success_count} channels")
